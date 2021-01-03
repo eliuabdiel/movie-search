@@ -1,5 +1,7 @@
 import logo from './logo.svg';
 import './App.css';
+import { Title }  from './components/Title'
+import { SearchForm }  from './components/SearchForm'
 import { Container,Row, Col } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
@@ -11,7 +13,8 @@ function App() {
           
         </Col>
         <Col xl="8">
-          <h1 className="text-center">Hola</h1>
+          <Title>Search Movies</Title>
+          <SearchForm />
         </Col>
         <Col xl="2">
           
