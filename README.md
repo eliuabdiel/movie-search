@@ -1,5 +1,5 @@
 
 
 # movie-search
-Little excercise with react.js 
+Little excercise with create react app
 
