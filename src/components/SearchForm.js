@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-
+const API_KEY = 'fb2fa295'
 export class SearchForm extends Component {
     state =  {
         inputMovie: ''
@@ -9,14 +9,18 @@ export class SearchForm extends Component {
     }
     _handleSubmit = (e) => {
         e.preventDefault()
-        alert(this.state.inputMovie)
+        fetch(`http://www.omdbapi.com/?apikey=${API_KEY}&s=${this.state.inputMovie}`)
+            .then(res => res.json())
+            .then(results => {
+                const {Search} = results
+                this.props.onResults(Search)
+            })
     }
     render(){
         return(
             <form onSubmit={this._handleSubmit}>
                 <div className="input-group"> 
                     <input 
-                        className=""
                         onChange={this._handleChange}
                         type="text" 
                         className="form-control" 
