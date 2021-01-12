@@ -12,7 +12,7 @@ export class Movie extends Component{
         const { poster, title, year } = this.props
 
         return(
-            <Card style={{ width: '18rem' }} className="">
+            <Card style={{ width: '18rem' }} className="mt-3">
                 <Card.Img variant="top" src={`${poster}`}/>
                 <Card.Body>
                     <Card.Title>{title}</Card.Title>
