@@ -1,37 +1,40 @@
 import './App.css';
 import React, {Component} from 'react'
-import { Title }  from './components/Title'
-import { SearchForm }  from './components/SearchForm'
-import { Container,Row, Col } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { MovieList } from './components/MovieList';
+import { Home } from './pages/Home'
+import  About  from './pages/About'
+
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link
+} from "react-router-dom";
 
 class App extends Component {
-  state = { results: [], usedSearch: false}
-
-  _handleResults = (results) => {
-    this.setState({ results, usedSearch: true })
+  state = {
+    resultsAbout : []
+  } 
+  _handleAboutResult = (results) =>{
+    this.setState({resultsAbout:results})
+    console.log("Resultados del About",this.state.resultsAbout)
   }
   render(){
     return (
-      <Container>
-        <Row className="justify-content-center">
-          <Col xl="8" lg="8" md="10" xs="12">
-            <Title styleName="mt-3">Search Movies</Title> {/*styleName are name of css classes, this will be sent as a prop*/}
-            <SearchForm onResults={this._handleResults}/>
-          </Col>
-        </Row>
-        <Row className="justify-content-around">
-              {this.state.usedSearch
-                  ? this.state.results.length === 0
-                    ? <p className="text-center mt-3 font-weight-bold">Sorry, no results found </p >
-                    : <MovieList
-                      movies={this.state.results}
-                      />
-                  : null
-              }
-        </Row>
-      </Container>
+      <Router>
+        <Switch>
+          <Route path="/about/:id">
+            <About movies={this.state.resultsAbout}></About> 
+          </Route>
+          <Route exact path="/">
+            <Home 
+            setResults={this._handleAboutResult}/>
+          </Route>
+          <Route path="*">
+            <p>Not found</p>
+          </Route>
+        </Switch>
+      </Router>
     );
   }
   
