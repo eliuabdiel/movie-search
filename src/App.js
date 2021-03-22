@@ -21,7 +21,7 @@ class App extends Component {
           <Route path="/about/:id">
             <About movies={this.state.resultsAbout}></About>
           </Route>
-          <Route exact path="movie-search/">
+          <Route exact path="/">
             <Home setResults={this._handleAboutResult} />
           </Route>
           <Route path="*">
