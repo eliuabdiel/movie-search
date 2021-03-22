@@ -1,34 +1,28 @@
-import './App.css';
-import React, {Component} from 'react'
-import 'bootstrap/dist/css/bootstrap.min.css';
-import { Home } from './pages/Home'
-import  About  from './pages/About'
+import "./App.css";
+import React, { Component } from "react";
+import "bootstrap/dist/css/bootstrap.min.css";
+import { Home } from "./pages/Home";
+import About from "./pages/About";
 
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  Link
-} from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 
 class App extends Component {
   state = {
-    resultsAbout : []
-  } 
-  _handleAboutResult = (results) =>{
-    this.setState({resultsAbout:results})
-    console.log("Resultados del About",this.state.resultsAbout)
-  }
-  render(){
+    resultsAbout: [],
+  };
+  _handleAboutResult = (results) => {
+    this.setState({ resultsAbout: results });
+    console.log("Resultados del About", this.state.resultsAbout);
+  };
+  render() {
     return (
       <Router>
         <Switch>
           <Route path="/about/:id">
-            <About movies={this.state.resultsAbout}></About> 
+            <About movies={this.state.resultsAbout}></About>
           </Route>
-          <Route exact path="/">
-            <Home 
-            setResults={this._handleAboutResult}/>
+          <Route exact path="movie-search/">
+            <Home setResults={this._handleAboutResult} />
           </Route>
           <Route path="*">
             <p>Not found</p>
@@ -37,7 +31,6 @@ class App extends Component {
       </Router>
     );
   }
-  
 }
 
 export default App;
